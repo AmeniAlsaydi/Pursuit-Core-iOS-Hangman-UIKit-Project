@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var letterGuess: UITextField!
     @IBOutlet weak var hangImage: UIImageView!
     
+    @IBOutlet weak var winLoseLabel: UILabel!
     
     // creating a game instance
     let game = HangmanBrain()
@@ -31,10 +32,11 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         // I need to specify that this is the first text feild.
-       if textField == wordEntry {
+        if textField == wordEntry {
             guard let word = textField.text else { return false }
             game.enteredWord = word
             
@@ -43,28 +45,45 @@ extension ViewController: UITextFieldDelegate {
             game.hiddenWord = game.getHiddenWord()
             hiddenWordLabel.text = game.hiddenWord.joined(separator:" ")
             textField.isEnabled = false
+        }
+        if textField == letterGuess {
+            
+            guard let entry = textField.text else { return false }
+            print(entry)
+            game.checkEntry(entry)
+            
+            textField.text = ""
+            hangImage.image = game.chnageImage()
+            hiddenWordLabel.text = game.hiddenWord.joined(separator:" ")
+            print("hidden word: \(game.hiddenWord)")
+            
+            print(game.winOrLose)
+            
+            if game.winOrLose == "win" {
+                textField.isEnabled = false
+                resignFirstResponder()
+                winLoseLabel.text = "You win"
+            } else if game.winOrLose == "lose" {
+                textField.isEnabled = false
+                resignFirstResponder()
+                winLoseLabel.text = "You lose"
+            }
+            
             
         }
-        
         return true
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         if textField == letterGuess {
-        textField.text = ""
-        game.checkEntry(string)
-        let image = game.chnageImage()
-        hangImage.image = image
-        hiddenWordLabel.text = game.hiddenWord.joined(separator:" ")
-        print("hidden word: \(game.hiddenWord)")
+            print(string)
         
-        let newLength = (textField.text?.characters.count ?? 2) + string.characters.count - range.length
-        return newLength <= 1 // replace 30 for your max length value
-
-       }
+            let newLength = (textField.text?.count ?? 1) + string.count - range.length
+            return newLength <= 1
+        }
         
-    return true
+        return true
     }
     
     

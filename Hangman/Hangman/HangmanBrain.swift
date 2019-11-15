@@ -13,6 +13,7 @@ class HangmanBrain { // maybe this is better off as a stuct so things dont have 
     var enteredWord = ""
     var wrongCount = 0
     var hangImage = #imageLiteral(resourceName: "hang1")
+    var winOrLose = ""
     
     
     
@@ -22,8 +23,8 @@ class HangmanBrain { // maybe this is better off as a stuct so things dont have 
         return hiddenWord
     }
     
-    func checkEntry(_ letter: String) {
-        print(letter)
+    func checkEntry(_ letter: String) { // could this return a string winOrLose
+        // print(letter)
         
         var spotCounter = 0
         
@@ -37,11 +38,26 @@ class HangmanBrain { // maybe this is better off as a stuct so things dont have 
                 spotCounter += 1
             }
             
+            
         } else {
-            wrongCount += 1
+        wrongCount += 1
+        }
+        
+
+        if hiddenWord.joined(separator: "") == enteredWord {
+                winOrLose = "win"
+                // change label
+                // disable text feild for guess entry
+            } else if wrongCount == 6 {
+                winOrLose = "lose"
+                // print loss on label
+                // disable text feild for guess entry
+
             }
         }
 
+
+    
 
     func chnageImage() -> UIImage {
         switch wrongCount {

@@ -82,14 +82,14 @@ extension ViewController: UITextFieldDelegate {
             if game.winOrLose == "win" {
                 textField.isEnabled = false
                 resignFirstResponder()
-                winLoseLabel.text = "You win"
+                winLoseLabel.text = "WINNER! 🏆"
                 textField.placeholder = "Play Again!"
                 playAgain.setImage(UIImage(named: "playAgainButton"), for: .normal)
                 
             } else if game.winOrLose == "lose" {
                 textField.isEnabled = false
                 resignFirstResponder()
-                winLoseLabel.text = "You lose"
+                winLoseLabel.text = "YOU LOSE! 😭 The word was: \(game.enteredWord)"
                 textField.placeholder = "Play Again!"
                 playAgain.setImage(UIImage(named: "playAgainButton"), for: .normal)
             }
@@ -117,7 +117,11 @@ extension ViewController: UITextFieldDelegate {
                 print("this has already been entered ")
                 return false
             }
+            // to disable to the user from entering a letter that is not isLetter (checks against special char and nums)
+            // must be casted to a character so you can use isLetter
             
+            if !Character(string).isLetter { return false }
+            // Disable from entering more than 1 letter:
             let newLength = (textField.text?.count ?? 1) + string.count - range.length
             return newLength <= 1
         }
@@ -133,4 +137,6 @@ extension ViewController: UITextFieldDelegate {
  - stop users from entering in anything except for the letters a-z
  - stop user from entering a letter that has already been guessed ✅
  - BUG: when i enter the 'i' its capitalized and will not check for i correctly
+ - Auto Layout!
+ - Edit checkentry function to work aroundgame.enteredWord caps 
  */

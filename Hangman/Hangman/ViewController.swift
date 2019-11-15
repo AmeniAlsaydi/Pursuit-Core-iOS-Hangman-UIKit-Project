@@ -26,6 +26,7 @@ class ViewController: UIViewController {
         
         wordEntry.delegate = self
         letterGuess.delegate = self
+        letterGuess.isEnabled = false
         
     }
     
@@ -56,6 +57,8 @@ extension ViewController: UITextFieldDelegate {
             game.hiddenWord = game.getHiddenWord()
             hiddenWordLabel.text = game.hiddenWord.joined(separator:" ")
             textField.isEnabled = false
+            letterGuess.isEnabled = true
+
         }
         if textField == letterGuess {
             
@@ -102,3 +105,7 @@ extension ViewController: UITextFieldDelegate {
     
 }
 
+// TODO:
+/*
+ - disable back button
+ */

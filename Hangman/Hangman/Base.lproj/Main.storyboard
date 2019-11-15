@@ -60,22 +60,22 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IRQ-zF-2Ku">
-                                <rect key="frame" x="166" y="687" width="83" height="64"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IRQ-zF-2Ku">
+                                <rect key="frame" x="117" y="722" width="188" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="New Game"/>
                                 <connections>
-                                    <action selector="newGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bTm-lT-XWI"/>
+                                    <action selector="playAgain:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bTm-lT-XWI"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="hangImage" destination="MIr-dH-hub" id="w7V-r6-PpR"/>
                         <outlet property="hiddenWordLabel" destination="xjm-ZB-Odp" id="6ss-cR-e1U"/>
                         <outlet property="letterGuess" destination="E6W-su-doh" id="GCP-6I-9fv"/>
+                        <outlet property="playAgain" destination="IRQ-zF-2Ku" id="66h-3Y-GVT"/>
                         <outlet property="winLoseLabel" destination="8Cz-pv-ksr" id="8aw-kn-5r5"/>
                         <outlet property="wordEntry" destination="ct1-V2-ixH" id="HRd-7v-63r"/>
                     </connections>

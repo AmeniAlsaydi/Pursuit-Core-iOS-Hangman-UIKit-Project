@@ -16,6 +16,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var hangImage: UIImageView!
     @IBOutlet weak var winLoseLabel: UILabel!
     
+    @IBOutlet weak var playAgain: UIButton!
+    
     var enteredLetters = [String]()
     
     // creating a game instance
@@ -32,7 +34,7 @@ class ViewController: UIViewController {
     }
     
     
-    @IBAction func newGame(_ sender: UIButton) {
+    @IBAction func playAgain(_ sender: UIButton) {
         game.newGame()
         wordEntry.isEnabled = true
         letterGuess.isEnabled = true
@@ -41,6 +43,8 @@ class ViewController: UIViewController {
         letterGuess.placeholder = ""
         hangImage.image = game.hangImage
         winLoseLabel.text = ""
+        letterGuess.isEnabled = false
+
     }
     
 }
@@ -80,11 +84,14 @@ extension ViewController: UITextFieldDelegate {
                 resignFirstResponder()
                 winLoseLabel.text = "You win"
                 textField.placeholder = "Play Again!"
+                playAgain.setImage(UIImage(named: "playAgainButton"), for: .normal)
+                
             } else if game.winOrLose == "lose" {
                 textField.isEnabled = false
                 resignFirstResponder()
                 winLoseLabel.text = "You lose"
                 textField.placeholder = "Play Again!"
+                playAgain.setImage(UIImage(named: "playAgainButton"), for: .normal)
             }
             
             

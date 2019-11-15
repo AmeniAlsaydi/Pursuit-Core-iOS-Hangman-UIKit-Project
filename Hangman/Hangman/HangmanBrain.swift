@@ -26,6 +26,9 @@ class HangmanBrain { // maybe this is better off as a stuct so things dont have 
     func checkEntry(_ letter: String) { // could this return a string winOrLose
         // print(letter)
         
+        let enteredWord = self.enteredWord.lowercased()
+        let letter = letter.lowercased()
+        
         var spotCounter = 0
         
         if enteredWord.contains(letter) { // checks if word contains the letter entered
@@ -43,7 +46,6 @@ class HangmanBrain { // maybe this is better off as a stuct so things dont have 
         wrongCount += 1
         }
         
-
         if hiddenWord.joined(separator: "") == enteredWord {
                 winOrLose = "win"
                 // change label
@@ -55,9 +57,6 @@ class HangmanBrain { // maybe this is better off as a stuct so things dont have 
 
             }
         }
-
-
-    
 
     func chnageImage() -> UIImage {
         switch wrongCount {
@@ -82,11 +81,7 @@ class HangmanBrain { // maybe this is better off as a stuct so things dont have 
     }
     
     func newGame() {
-        // new game button goes here:
-          // - it should change image back to 0 ✅
-          // - set wrongCount back to 0 ✅
-          // - re-enable text feilds
-          // - clear hidden word and entered word ✅
+
         hiddenWord = [String]()
         enteredWord = ""
         wrongCount = 0

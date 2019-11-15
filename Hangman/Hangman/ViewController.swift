@@ -29,7 +29,6 @@ class ViewController: UIViewController {
         wordEntry.delegate = self
         letterGuess.delegate = self
         letterGuess.isEnabled = false
-        
     }
     
     
@@ -70,10 +69,7 @@ extension ViewController: UITextFieldDelegate {
             
             guard let entry = textField.text else { return false }
             print(entry)
-            //=====
-//            if entry.count > 1 {
-//                return false
-//            }
+
             game.checkEntry(entry)
             enteredLetters.append(entry)
             
@@ -127,7 +123,7 @@ extension ViewController: UITextFieldDelegate {
                 return false
             }
             
-            // disables keys that are not letters a-z
+            // Disables keys that are not letters a-z
             if !Character(string).isLetter { return false }
             
             // Disable from entering more than 1 letter:
@@ -140,12 +136,3 @@ extension ViewController: UITextFieldDelegate {
 
 }
 
-// TODO:
-/*
- - disable delete button ✅
- - stop users from entering in anything except for the letters a-z ✅
- - stop user from entering a letter that has already been guessed ✅
- - BUG: when i enter the 'i' its capitalized and will not check for i correctly
- - Auto Layout!
- - Edit checkentry function to work aroundgame.enteredWord caps ✅
- */

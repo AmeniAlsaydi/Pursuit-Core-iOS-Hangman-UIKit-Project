@@ -43,6 +43,7 @@ class ViewController: UIViewController {
         hangImage.image = game.hangImage
         winLoseLabel.text = ""
         letterGuess.isEnabled = false
+        enteredLetters = [String]()
         playAgain.setImage(nil, for: .normal)
 
     }

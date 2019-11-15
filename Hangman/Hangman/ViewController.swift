@@ -14,8 +14,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var hiddenWordLabel: UILabel!
     @IBOutlet weak var letterGuess: UITextField!
     @IBOutlet weak var hangImage: UIImageView!
-    
     @IBOutlet weak var winLoseLabel: UILabel!
+    
+    var enteredLetters = [String]()
     
     // creating a game instance
     let game = HangmanBrain()
@@ -58,13 +59,14 @@ extension ViewController: UITextFieldDelegate {
             hiddenWordLabel.text = game.hiddenWord.joined(separator:" ")
             textField.isEnabled = false
             letterGuess.isEnabled = true
-
+            
         }
         if textField == letterGuess {
             
             guard let entry = textField.text else { return false }
             print(entry)
             game.checkEntry(entry)
+            enteredLetters.append(entry)
             
             textField.text = ""
             hangImage.image = game.chnageImage()
@@ -94,18 +96,34 @@ extension ViewController: UITextFieldDelegate {
         
         if textField == letterGuess {
             print(string)
-        
+            // Disables the backspace button
+            if let char = string.cString(using: String.Encoding.utf8) {
+                let isBackSpace = strcmp(char, "\\b")
+                if (isBackSpace == -92) {
+                    print("Backspace was pressed")
+                    return false
+                }
+            }
+            
+            // Disables letter keys that have already been entered
+            if enteredLetters.contains(string) {
+                print("this has already been entered ")
+                return false
+            }
+            
             let newLength = (textField.text?.count ?? 1) + string.count - range.length
             return newLength <= 1
         }
         
         return true
     }
-    
-    
+
 }
 
 // TODO:
 /*
- - disable back button
+ - disable delete button ✅
+ - stop users from entering in anything except for the letters a-z
+ - stop user from entering a letter that has already been guessed ✅
+ - BUG: when i enter the 'i' its capitalized and will not check for i correctly
  */

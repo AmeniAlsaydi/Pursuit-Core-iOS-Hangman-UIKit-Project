@@ -80,5 +80,19 @@ class HangmanBrain { // maybe this is better off as a stuct so things dont have 
         }
         return hangImage
     }
+    
+    func newGame() {
+        // new game button goes here:
+          // - it should change image back to 0 ✅
+          // - set wrongCount back to 0 ✅
+          // - re-enable text feilds
+          // - clear hidden word and entered word ✅
+        hiddenWord = [String]()
+        enteredWord = ""
+        wrongCount = 0
+        hangImage = #imageLiteral(resourceName: "hang1")
+        winOrLose = ""
+        
+    }
 
 }

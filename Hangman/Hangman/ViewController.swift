@@ -29,13 +29,24 @@ class ViewController: UIViewController {
         
     }
     
+    
+    @IBAction func newGame(_ sender: UIButton) {
+        game.newGame()
+        wordEntry.isEnabled = true
+        letterGuess.isEnabled = true
+        hiddenWordLabel.text = ""
+        wordEntry.placeholder = "Enter Word"
+        letterGuess.placeholder = ""
+        hangImage.image = game.hangImage
+        winLoseLabel.text = ""
+    }
+    
 }
 
 extension ViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        // I need to specify that this is the first text feild.
         if textField == wordEntry {
             guard let word = textField.text else { return false }
             game.enteredWord = word
@@ -63,10 +74,12 @@ extension ViewController: UITextFieldDelegate {
                 textField.isEnabled = false
                 resignFirstResponder()
                 winLoseLabel.text = "You win"
+                textField.placeholder = "Play Again!"
             } else if game.winOrLose == "lose" {
                 textField.isEnabled = false
                 resignFirstResponder()
                 winLoseLabel.text = "You lose"
+                textField.placeholder = "Play Again!"
             }
             
             
